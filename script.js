@@ -1,0 +1,183 @@
+import * as User from './js/user.js';
+import * as C from './js/category.js';
+import * as T from './js/task.js';
+
+var colorChoice;
+
+$(document).ready(function(){
+
+
+    $(".user-wallet-icon").text(User.user.wallet_icon);
+
+    // Category
+    $(".button-add-category").click(function(){
+        AddNewCategory();
+    });
+
+    $(".category-list").on("click", ".category", function(){
+        OpenCategory($(this).attr("id"));
+    });
+
+    $(".specific-category-delete").click(function(){
+        let cat_id = $(".specific-category").attr("id");
+        User.DeleteCategory(cat_id);
+        GenerateCategories();
+        $(".specific-category").addClass("display-none");
+    });
+
+    $("#colorChoice").change(function(){
+        colorChoice = $(this).val();
+        console.log(colorChoice);
+    });
+
+    $("#specificCategoryColorChoice").change(function(){
+        let specificColorChoice = $(this).val();
+        let cat_id = $(".specific-category").attr("id");
+
+        User.UpdateCategoryColor(cat_id, specificColorChoice);
+    });
+
+
+    // On Enter Commands
+    $("#InputCategory").keyup(function(event) {
+        if (event.keyCode === 13) {
+            $(".button-add-category").click();
+        }
+    });
+
+    $("#InputTask").keyup(function(event) {
+        if (event.keyCode === 13) {
+            $(".button-add-task").click();
+        }
+    });
+
+
+    // Tasks
+    $(".button-add-task").click(function(){
+        AddNewTask();
+    });
+
+    // Task List Commands
+    $(".task-list").on("click", ".task-delete", function(){
+        Delete($(this));
+    });
+
+
+    $(".task-list").on("click", ".task-check", function(){
+        Delete($(this));
+        User.AddtoWallet(1);
+        $(".user-wallet-amount").text(User.GetWallet());
+    });
+
+
+
+
+
+});
+
+
+// Category
+function AddNewCategory(){
+    let input = $("#InputCategory").val();
+
+    let new_cat = C.CreateCategory(input,colorChoice);
+    let clone = {...new_cat};
+    User.AddCategory(clone);
+    GenerateCategories();
+    $("#InputCategory").val("");
+
+}
+
+function GenerateCategories(){
+    $(".category-list").empty();
+    let list = User.GetCategories();
+    for(let i = 0 ; i < list.length; i++){
+        if(list[i].color == undefined){list[i].color = "#000"};
+        let $divcategory = $("<div id='" + list[i].id  + "' class='category' style='color:" + list[i].color + "'>" + list[i].title + "</div>");
+        $(".category-list").append($divcategory);
+    }
+}
+
+function OpenCategory(id){
+    let $thiscategory = User.GetSpecificCategory(id);
+    $(".specific-category").removeClass("display-none");
+    $("#specificCategoryColorChoice").val($thiscategory.color);
+
+        $(".specific-category h2").text($thiscategory.title);
+        $(".specific-category").attr("id",$thiscategory.id);
+        GenerateTasks($thiscategory.id);
+
+}
+
+
+
+
+// Task
+function GenerateTasks(cat_id){
+    $(".task-list").empty();
+
+    let user_tasks = User.GetTasks();
+
+    if(user_tasks.length != 0){
+
+        var task_list = user_tasks.filter(x => {
+            return x.category_id == cat_id;
+        });
+
+        if(task_list.length != 0){
+            for(let i = 0 ; i < task_list.length; i++){
+                BuildTask(task_list[i]);
+            }
+        }else{
+            $(".task-list").text("No Tasks");
+        }
+
+
+    }else{
+        $(".task-list").text("No Tasks");
+    }
+
+    
+}
+
+function AddNewTask(){
+    let input = $("#InputTask").val();
+    let specificCategoryID = $(".specific-category").attr("id");
+    let date = $("#InputTaskDate").val();
+    let time = $("#InputTaskTime").val();
+    let importance = $('#ImportanceDropDown').val();
+    let task = T.CreateTask(specificCategoryID, input, importance);
+
+
+    let clone = {...task};
+    User.AddTask(clone);
+    GenerateTasks(specificCategoryID);
+    $("#InputTask").val("");
+}
+
+function BuildTask(t){
+    let $taskcontainer = $("<div id='" + t.id + "' class='task-container'></div>");
+    let $taskcheck = $("<div data-target='" + t.id + "' class='task-check'>CHECK</div>");
+    let $tasktitle = $("<div class='task-title'>" + t.title + "</div>");
+    let $taskdetails = $("<div class='task-details'></div>");
+    let $importance = $("<div class='task-importance'>" + t.importance + "</div>");
+    let $taskdelete = $("<div data-target='" + t.id + "' class='task-delete'>Delete</div>");
+    
+
+    $taskdetails.append($importance);
+    $taskdetails.append($taskdelete);
+
+    $taskcontainer.append($taskcheck);
+    $taskcontainer.append($tasktitle);
+    $taskcontainer.append($taskdetails);
+
+    $(".task-list").append($taskcontainer);
+}
+
+
+function Delete($this){
+    let thisdatatarget = $this.attr("data-target");
+    User.DeleteTask(thisdatatarget);
+    let cat_id = $(".specific-category").attr("id");
+    GenerateTasks(cat_id);
+}

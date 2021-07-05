@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Todo App</title>
+
+    <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
+</head>
+<body>
+
+    <h1>App</h1>
+    <small class="user-wallet">
+        <div class="user-wallet-icon"></div>
+        <div class="user-wallet-amount"></div>
+    </small>
+    <div class="creation-step">
+
+        <input tabindex="1" id="InputCategory" type="text" placeholder="Input category here."/>
+        <input type="color" id="colorChoice" name="head" value="#000">
+        <button tabindex="2" class="button-add-category">Add Category</button>
+        <div class="category-list">
+    
+        </div>
+    </div>
+
+
+    <div class="specific-category display-none">
+        <h2></h2>
+        <div class="specific-category-delete">Delete Category</div>
+        <input type="color" id="specificCategoryColorChoice" name="head" value="#000">
+
+        <input tabindex="3" id="InputTask" type="text" placeholder="Input task here."/>
+        <select tabindex="4" name="importance" id="ImportanceDropDown">
+            <option value="Low Importance">Low Importance</option>
+            <option value="Medium Importance">Medium Importance</option>
+            <option value="High Importance">High Importance</option>
+        </select>
+        <button tabindex="5" class="button-add-task">Add Task</button>
+
+        <div class="task-list">
+
+        </div>
+    </div>
+
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="script.js" type="module"></script>
+</body>
+</html>
