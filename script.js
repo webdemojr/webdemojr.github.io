@@ -140,10 +140,7 @@ function GenerateTasks(cat_id){
 function AddNewTask(){
     let input = $("#InputTask").val();
     let specificCategoryID = $(".specific-category").attr("id");
-    let date = $("#InputTaskDate").val();
-    let time = $("#InputTaskTime").val();
-    let importance = $('#ImportanceDropDown').val();
-    let task = T.CreateTask(specificCategoryID, input, importance);
+    let task = T.CreateTask(specificCategoryID, input);
 
 
     let clone = {...task};
@@ -154,14 +151,11 @@ function AddNewTask(){
 
 function BuildTask(t){
     let $taskcontainer = $("<div id='" + t.id + "' class='task-container'></div>");
-    let $taskcheck = $("<div data-target='" + t.id + "' class='task-check'>CHECK</div>");
+    let $taskcheck = $("<div data-target='" + t.id + "' class='task-check'><img src='/assets/icons/checkmark.svg'></div>");
     let $tasktitle = $("<div class='task-title'>" + t.title + "</div>");
     let $taskdetails = $("<div class='task-details'></div>");
-    let $importance = $("<div class='task-importance'>" + t.importance + "</div>");
-    let $taskdelete = $("<div data-target='" + t.id + "' class='task-delete'>Delete</div>");
+    let $taskdelete = $("<div data-target='" + t.id + "' class='task-delete'><img src='/assets/icons/delete.svg'></div>");
     
-
-    $taskdetails.append($importance);
     $taskdetails.append($taskdelete);
 
     $taskcontainer.append($taskcheck);

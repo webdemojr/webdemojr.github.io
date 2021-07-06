@@ -13,7 +13,7 @@
 <body>
 
     <div class="main-container">
-        <!-- <div class="header-container">
+        <div class="header-container">
             <div class="header-row-container header-first-row-container">
                 <div class="logo">ToDoApp</div><div class="profile">Jason</div>
             </div>
@@ -22,7 +22,7 @@
                     <div class="user-wallet-amount">100 <span class='user-wallet-icon'>🍉</span></div><div class="user-profile-stat-level">2 🎖</div>
                 </div>
             </div>
-        </div> -->
+        </div>
 
 
         <div class="category-container">
@@ -37,17 +37,11 @@
         </div>
 
         <div class="tasks-container specific-category display-none">
-            <div class="go-back-from-task">← Go Back</div>
+            <div class="go-back"><span class="go-back-from-task">← Go Back</span></div>
             <h2></h2>
             <div class="specific-category-delete">Delete Category</div>
 
-            <input tabindex="3" id="InputTask" type="text" placeholder="Input task here."/>
-            <select tabindex="4" name="importance" id="ImportanceDropDown">
-                <option value="Low Importance">Low Importance</option>
-                <option value="Medium Importance">Medium Importance</option>
-                <option value="High Importance">High Importance</option>
-            </select>
-            <button tabindex="5" class="button-add-task">Add Task</button>
+            <input tabindex="3" id="InputTask" type="text" class="input-outline-idle" placeholder="Type your task here."/><button tabindex="5" class="button-add-task">+</button>
 
             <div class="task-list">
 
