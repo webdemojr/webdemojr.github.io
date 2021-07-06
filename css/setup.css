@@ -1,0 +1,44 @@
+input {
+    box-sizing: border-box;
+}
+
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+
+input[type=text] {   
+    /* Remove First */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+button, input{
+    font-family: var(--primary-font-100);
+    border-radius:10px;
+    padding:15px 20px;
+    border:1px solid transparent;
+}
+
+input::placeholder{
+    opacity:0.3;
+}
+
+.button-outline-accent{
+    border:1px solid var(--accent-color-900);
+    background:transparent;
+    color:var(--accent-color-900);
+}
+
+.button-plain{
+    background:transparent;
+    color:var(--accent-color-900);
+}
+
+.input-outline-idle{
+    border:1px solid #eeeeee;
+}
+
+.input-outline-idle:focus{
+    border:1px solid var(--accent-color-900);
+}

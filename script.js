@@ -23,18 +23,7 @@ $(document).ready(function(){
         User.DeleteCategory(cat_id);
         GenerateCategories();
         $(".specific-category").addClass("display-none");
-    });
-
-    $("#colorChoice").change(function(){
-        colorChoice = $(this).val();
-        console.log(colorChoice);
-    });
-
-    $("#specificCategoryColorChoice").change(function(){
-        let specificColorChoice = $(this).val();
-        let cat_id = $(".specific-category").attr("id");
-
-        User.UpdateCategoryColor(cat_id, specificColorChoice);
+        $(".category-container").removeClass("display-none");
     });
 
 
@@ -53,6 +42,11 @@ $(document).ready(function(){
 
 
     // Tasks
+    $(".go-back-from-task").click(function(){
+        $(".specific-category").addClass("display-none");
+        $(".category-container").removeClass("display-none");
+    });
+
     $(".button-add-task").click(function(){
         AddNewTask();
     });
@@ -73,17 +67,21 @@ $(document).ready(function(){
 
 
 
+
 });
 
 
 // Category
 function AddNewCategory(){
-    let input = $("#InputCategory").val();
+    let input = $("#InputCategory").val().trim();
 
-    let new_cat = C.CreateCategory(input,colorChoice);
-    let clone = {...new_cat};
-    User.AddCategory(clone);
-    GenerateCategories();
+    if(input != ""){
+        let new_cat = C.CreateCategory(input);
+        let clone = {...new_cat};
+        User.AddCategory(clone);
+        GenerateCategories();
+    }
+
     $("#InputCategory").val("");
 
 }
@@ -92,16 +90,15 @@ function GenerateCategories(){
     $(".category-list").empty();
     let list = User.GetCategories();
     for(let i = 0 ; i < list.length; i++){
-        if(list[i].color == undefined){list[i].color = "#000"};
-        let $divcategory = $("<div id='" + list[i].id  + "' class='category' style='color:" + list[i].color + "'>" + list[i].title + "</div>");
+        let $divcategory = $("<div id='" + list[i].id  + "' class='category'><span class='category-title'>" + list[i].title + "</span></div>");
         $(".category-list").append($divcategory);
     }
 }
 
 function OpenCategory(id){
+    $(".category-container").addClass("display-none");
     let $thiscategory = User.GetSpecificCategory(id);
     $(".specific-category").removeClass("display-none");
-    $("#specificCategoryColorChoice").val($thiscategory.color);
 
         $(".specific-category h2").text($thiscategory.title);
         $(".specific-category").attr("id",$thiscategory.id);

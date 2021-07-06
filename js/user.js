@@ -44,13 +44,6 @@ export function DeleteCategory(catid){
     console.log(user.tasks);
 }
 
-export function UpdateCategoryColor(id, c){
-    let found = user.categories.find(x => x.id == id);
-    if(found){
-        found.color = c;
-    }
-}
-
 export function GetSpecificCategory(id){
     let found = user.categories.find(x => x.id == id);
     if(found){
