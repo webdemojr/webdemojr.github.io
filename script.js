@@ -115,6 +115,8 @@ function GenerateTasks(cat_id){
 
     let user_tasks = User.GetTasks();
 
+    let $emptytasks = $("<div class='empty-task-container'>No tasks yet!</div>")
+
     if(user_tasks.length != 0){
 
         var task_list = user_tasks.filter(x => {
@@ -126,26 +128,31 @@ function GenerateTasks(cat_id){
                 BuildTask(task_list[i]);
             }
         }else{
-            $(".task-list").text("No Tasks");
+            $(".task-list").append($emptytasks);
         }
 
 
     }else{
-        $(".task-list").text("No Tasks");
+
+        $(".task-list").append($emptytasks);
     }
 
     
 }
 
 function AddNewTask(){
-    let input = $("#InputTask").val();
-    let specificCategoryID = $(".specific-category").attr("id");
-    let task = T.CreateTask(specificCategoryID, input);
+    let input = $("#InputTask").val().trim();
 
+    if(input != ""){
+        let specificCategoryID = $(".specific-category").attr("id");
+        let task = T.CreateTask(specificCategoryID, input);
+    
+    
+        let clone = {...task};
+        User.AddTask(clone);
+        GenerateTasks(specificCategoryID);
+    }
 
-    let clone = {...task};
-    User.AddTask(clone);
-    GenerateTasks(specificCategoryID);
     $("#InputTask").val("");
 }
 
@@ -167,6 +174,7 @@ function BuildTask(t){
 
 
 function Delete($this){
+    $this.addClass("display-none");
     let thisdatatarget = $this.attr("data-target");
     User.DeleteTask(thisdatatarget);
     let cat_id = $(".specific-category").attr("id");

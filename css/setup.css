@@ -43,6 +43,16 @@ input::placeholder{
     color:var(--accent-color-900);
 }
 
+.button-outline-danger{
+    border:1px solid red;
+    background:transparent;
+    color:red;
+}
+
+.button-outline-danger:hover{
+    cursor: pointer;
+}
+
 .input-outline-idle{
     border:1px solid #eeeeee;
 }
@@ -50,3 +60,4 @@ input::placeholder{
 .input-outline-idle:focus{
     border:1px solid var(--accent-color-900);
 }
+

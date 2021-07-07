@@ -77,6 +77,10 @@ body{
     font-size:20px;
 }
 
+.category-container h2{
+    font-family: GilroyBold;
+}
+
 .category-title{
     word-wrap: break-word;
     overflow:hidden;
@@ -120,7 +124,6 @@ body{
 .task-check img{
     width:15px;
     object-fit: contain;
-    opacity:.2;
 }
 .task-check:hover{
     cursor:pointer;
@@ -136,21 +139,69 @@ body{
 .task-delete img{
     width:15px;
     object-fit: contain;
-    opacity:.2;
 }
 .task-delete:hover{
     cursor:pointer;
 }
+.empty-task-container{
+    width:100%;
+    padding:20px 10px;
+    border:1px dashed #cecece;
+    border-radius:10px;
+    margin:10px 0;
+    box-sizing: border-box;
+    color:#cecece;
+    text-align:center;
+}
 
 
 
+/* Specific Category */
 
 
+.category-header{
+    height:fit-content;
+}
 
+.category-header > div{
+    display:inline-block;
+}
 
+.go-back{
+    width:25%;
+}
+.go-back:hover{
+    cursor: pointer;
+}
 
+.category-details{
+    width:75%;
+    text-align: right !important;
+}
 
+.category-details > div{
+    display:inline-block;
+}
 
+.specific-category-button{
+    text-align: right;
+    font-size:10px;
+    width:fit-content;
+    padding:10px 20px;
+    border-radius:10px;
+    margin-left:10px;
+}
+
+.specific-category h2{
+    font-family: GilroyBold;
+    font-size:2rem;
+    margin-bottom: 10px;
+}
+
+.specific-category-button img{
+    width:10px;
+    object-fit: contain;
+}
 
 
 
