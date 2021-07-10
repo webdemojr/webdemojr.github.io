@@ -90,19 +90,22 @@ $(document).ready(function(){
 
     $(".ctgrs-container").click(function(){
         $(".options-selector").removeClass("display-none");
+        $("html,body").addClass("overflow-hidden");
     });
 
     $(".close-options").click(function(){
         $(".options-selector").addClass("display-none");
+        $("html,body").removeClass("overflow-hidden");
     });
 
     $(".options-selector-items-list").on("click", ".options-selector-item", function(){
         $(".options-selector").addClass("display-none");
+        $("html,body").removeClass("overflow-hidden");
         categorySelected = $(this).attr("id");
         $(".ctgrs-container").removeClass("unavailable-color");
         let cat_found = User.GetSpecificCategory(categorySelected);
         $(".ctgrs-container").text(cat_found.title);
-        $(".ctgrs-container").removeClass("no-ctgr-selected")
+        $(".ctgrs-container").removeClass("no-ctgr-selected");
     });
 
     $(".creator-button").click(function(){

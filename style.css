@@ -301,10 +301,13 @@ body{
     margin:10px;
     border-radius:10px;
 }
+.overflow-hidden{
+    overflow: hidden !important;
+}
 
 @media screen and (max-width: 530px) {
     .category,.options-selector-item{
-        font-size:.7rem;
+        font-size:.9rem;
     }
     
 }
