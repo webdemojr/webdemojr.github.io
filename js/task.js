@@ -1,15 +1,16 @@
 export var task = {
     "category_id":"",
     "id":"",
-    "title":""
+    "title":"",
+    "isToday":false
 }
 
 
-export function CreateTask(category_id, title){
+export function CreateTask(category_id, title, isToday){
     task["category_id"] = category_id;
     task["id"] = CreateTaskID();
     task["title"] = title;
-
+    task.isToday = isToday;
     return task;
 }
 

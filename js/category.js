@@ -1,11 +1,13 @@
 export var category = {
     "id":"",
-    "title":""
+    "title":"",
+    "color":""
 }
 
-export function CreateCategory(title){
+export function CreateCategory(title, color){
     category["id"] = CreateCategoryID();
     category["title"] = title;
+    category["color"] = color;
 
     return category;
 }

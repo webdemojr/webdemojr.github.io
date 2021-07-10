@@ -1,23 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-@font-face {
-    font-family: GilroyLight;
-    src: url("/assets/font/Gilroy-Light.otf")  format("opentype");;
-}
-
-@font-face {
-    font-family: GilroyBold;
-    src: url("/assets/font/Gilroy-ExtraBold.otf")  format("opentype");;
-}
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
 :root{
-    --max-width:700px;
-    --accent-color-900:#030b38;
+    --max-width:500px;
+    --accent-color-900:#048efe;
     --accent-color-100:#e2e5ff;
     --background-color-100:#fff;
     --background-color-200:#f8f7fa;
     --text-color-800:#262626;
     --text-color-100:#fff;
-    --primary-font-100:GilroyLight;
-    --primary-font-900:GilroyBold;
+    --primary-font:"Montserrat";
 }

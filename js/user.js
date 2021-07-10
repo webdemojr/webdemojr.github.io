@@ -63,6 +63,12 @@ export function AddTask(task){
     user["tasks"].push(task);
 }
 
+export function GetSpecificTask(id){
+    let found = user.tasks.find(x => x.id == id);
+    if(found){
+        return found;
+    }
+}
 export function DeleteTask(taskid){
 
     let foundindex;
@@ -70,13 +76,30 @@ export function DeleteTask(taskid){
     for(let i = 0; i < user.tasks.length; i++){
         if(user.tasks[i].id == taskid){
             foundindex = i;
-            console.log("Found: " + i);
             break;
         }
     }
 
     if (foundindex >= 0) {
         user.tasks.splice(foundindex, 1);
+    }
+}
+
+export function RemoveTaskfromToday(taskid){
+    for(let i = 0; i < user.tasks.length; i++){
+        if(user.tasks[i].id == taskid){
+            user.tasks[i].isToday = false;
+            break;
+        }
+    }
+}
+
+export function AddTasktoToday(taskid){
+    for(let i = 0; i < user.tasks.length; i++){
+        if(user.tasks[i].id == taskid){
+            user.tasks[i].isToday = true;
+            break;
+        }
     }
 }
 

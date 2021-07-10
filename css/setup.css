@@ -6,19 +6,18 @@ input:focus, textarea:focus, select:focus{
     outline: none;
 }
 
-input[type=text] {   
-    /* Remove First */
+input[type=text] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    background:transparent;
 }
 
 button, input{
-    font-family: var(--primary-font-100);
-    border-radius:10px;
-    padding:15px 20px;
+    font-family: var(--primary-font);
     border:1px solid transparent;
     font-size:16px;
+    padding:15px 0px;
 }
 
 input::placeholder{
@@ -61,3 +60,6 @@ input::placeholder{
     border:1px solid var(--accent-color-900);
 }
 
+.display-none{
+    display:none !important;
+}

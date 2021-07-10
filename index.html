@@ -7,12 +7,119 @@
     <link rel="stylesheet" href="/css/root.css">
     <link rel="stylesheet" href="/css/setup.css">
     <link rel="stylesheet" href="style.css">
-    
+    <script src="https://unpkg.com/phosphor-icons"></script>
     <title>Todo App</title>
 </head>
 <body>
 
+    <div class="full-cover display-none"></div>
+
+    <div class="user-launch"></div>
+
     <div class="main-container">
+        <div class="creator">
+            <div class="creator-input-top">
+                <input type="text" id="CreatorInput" placeholder="Start here..." maxlength="280">
+            </div>
+            <div class="creator-input-bottom">
+                <div class="entry-type">
+                    <span class="entry-inside-container">
+                        <span class="entry-text-and-icon selected-icon entry-category">
+                            <i class="ph-hash ph-md"></i>
+                        </span>
+                        <span class="entry-text-and-icon entry-task">
+                            <i class="ph-check-circle ph-md"></i>
+                        </span>
+                    </span>
+                </div><div class="entry-time">
+                    <span class="entry-inside-container">
+                        <span class="entry-text-and-icon selected-icon entry-now">
+                            <i class="ph-arrow-circle-down ph-md"></i>
+                        </span>
+                        <span class="entry-text-and-icon entry-later">
+                            <i class="ph-timer ph-md"></i>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="clrs-container"></div>
+            <div class="ctgrs-container no-ctgr-selected"></div>
+            
+            <button class="creator-button">Add <span class="creator-button-name">Category</span></button>
+        </div>
+
+        <div class="creator-message">
+            Successfully Added!
+        </div>
+
+        <div class="invisible"></div>
+        <div class="today">
+            <h2>Today</h2>
+            <div class="today-list">
+
+                
+                    <!-- <div class="task-container">
+                        <div class="task-inner-container task-details">
+                            <div class="task-category"><i class="ph-hash"></i></div><div class="task-title">Balls</div>
+                        </div>
+
+                        <div class="task-inner-container task-actions">
+                            <div class="task-check"><i class="ph-check"></i></div><div class="task-delete"><i class="ph-trash"></i></div>
+                        </div>
+
+                    </div>
+
+                    <div class="task-container">
+                        <div class="task-inner-container task-details">
+                            <div class="task-category"><i class="ph-hash"></i></div><div class="task-title">Balls</div>
+                        </div>
+
+                        <div class="task-inner-container task-actions">
+                            <div class="task-check"><i class="ph-check"></i></div><div class="task-cancel"><i class="ph-x"></i></div><div class="task-delete"><i class="ph-trash"></i></div>
+                        </div>
+
+                    </div>
+             -->
+          
+            </div>
+        </div>
+
+
+        <div class="categories">
+            <h2>My Categories</h2>
+            <div class="categories-list">
+
+            </div>
+        </div>
+
+        <div class="specific-category">
+            <h2></h2>
+            <div class="specific-category-tasks">
+                
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="options-selector display-none">
+        <div class="options-selector-inner-container">
+
+
+            <div class="close-options">
+                <i class="ph-x"></i>
+            </div>
+            <h2>My Categories</h2>
+            <div class="options-selector-items-list">
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- <div class="main-container">
         <div class="header-container">
             <div class="header-row-container header-first-row-container">
                 <div class="logo">ToDoApp</div><div class="profile">Jason</div>
@@ -43,16 +150,15 @@
             </div>
             
             <h2></h2>
-            
 
-            <input tabindex="3" id="InputTask" type="text" class="input-outline-idle" placeholder="Type your task here."/><button tabindex="5" class="button-add-task">+</button>
+            <input tabindex="3" id="InputTask" type="text" class="input-outline-idle" placeholder="Type your task here."/><button tabindex="5" class="button-add-task button-outline-accent">+</button>
 
             <div class="task-list">
 
             </div>
         </div>
 
-    </div>
+    </div> -->
 
 
 
