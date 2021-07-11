@@ -168,6 +168,7 @@ body{
     color:#000;
     position:fixed;
     top:20px;
+    max-width:var(--max-width);
 }
 
 .show-creator-message{
