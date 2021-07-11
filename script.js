@@ -144,7 +144,7 @@ $(document).ready(function(){
 
     $(".specific-category-tasks").on("click", ".task-to-today", function(){
   
-        console.log("BOOHOOO");
+
         
         let taskid = $(this).data("target");
 
@@ -165,11 +165,55 @@ $(document).ready(function(){
 
 
     $(".categories-list").on("click", ".category", function(){
+       
+        let $thisid = $(this).attr("id");
+        let thiscat = User.GetSpecificCategory($thisid);
+        $(".specific-category h2").text(thiscat.title);
+        $(".specific-category").removeClass("display-none");
+        BuildTasks(thiscat);
+        $(".categories").addClass("display-none");
+    });
+
+    $(".today-list").on("click", ".task-category", function(){
         console.log("Clicked");
         let $thisid = $(this).attr("id");
         let thiscat = User.GetSpecificCategory($thisid);
         $(".specific-category h2").text(thiscat.title);
+        $(".specific-category").removeClass("display-none");
         BuildTasks(thiscat);
+    });
+
+    $(".go-back").click(function(){
+        $(".specific-category").addClass("display-none");
+        $(".categories").removeClass("display-none");
+    });
+
+    $(".user-create").click(function(){
+        if($(".creator").hasClass("creator-hide")){
+            $(".creator").removeClass("creator-hide");
+            $(".user-create i").removeClass("ph-plus-circle").addClass("ph-x-circle");
+        }else{
+            $(".creator").addClass("creator-hide");
+            $(".user-create i").addClass("ph-plus-circle").removeClass("ph-x-circle");
+        }
+    });
+
+
+    $(".utility-belt-edge > div").click(function(){
+        $(this).addClass("user-utility-belt-active").siblings().removeClass('user-utility-belt-active');
+        if($(this).hasClass("user-categories")){
+            $(".categories").removeClass("display-none");
+            $(".today").addClass("display-none");
+            $(".specific-category").addClass("display-none");
+        }else if($(this).hasClass("user-shop")){
+
+        }else if($(this).hasClass("user-profile")){
+
+        }else if($(this).hasClass("user-home")){
+            $(".categories").addClass("display-none");
+            $(".today").removeClass("display-none");
+            $(".specific-category").addClass("display-none");
+        }
     });
 
 
@@ -280,7 +324,7 @@ function BuildTodayTasks(){
         
        let $taskcontainer = $("<div id='" + today_tasks[i].id + "' class='task-container'></div>");
        let $taskdetails = $("<div class='task-inner-container task-details'></div>");
-       let $taskcategory = $("<div class='task-category'><i class='ph-hash' style='color:" + colorfound.colorHEX + "'></i></div><div class='task-title'>" + today_tasks[i].title + "</div>");
+       let $taskcategory = $("<div id='" + specificCategory.id + "' class='task-category' style='color:" + colorfound.colorHEX + "'><i class='ph-hash'></i>" + specificCategory.title + "</div><div class='task-title'>" + today_tasks[i].title + "</div>");
        let $taskactions = $("<div class='task-inner-container task-actions'></div>");
        let $taskactionsicons = $("<div data-target='" + today_tasks[i].id + "' class='task-check'><i class='ph-check'></i></div><div data-target='" + today_tasks[i].id + "' class='task-cancel'><i class='ph-x'></i></div><div data-target='" + today_tasks[i].id + "' class='task-delete'><i class='ph-trash'></i></div>");
             
@@ -305,7 +349,7 @@ function BuildTasks(category){
     for(let i=taskslist.length-1;i>=0;i--){
         let $taskcontainer = $("<div id='" + taskslist[i].id + "' class='task-container'></div>");
         let $taskdetails = $("<div class='task-inner-container task-details'></div>");
-        let $taskcategory = $("<div class='task-category'><i class='ph-hash' style='color:" + colorfound.colorHEX + "'></i></div><div class='task-title'>" + taskslist[i].title + "</div>");
+        let $taskcategory = $("<div class='task-title'>" + taskslist[i].title + "</div>");
         let $taskactions = $("<div class='task-inner-container task-actions'></div>");
         let $taskactionsicons;
 

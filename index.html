@@ -17,40 +17,43 @@
     <div class="user-launch"></div>
 
     <div class="main-container">
-        <div class="creator">
-            <div class="creator-input-top">
-                <input type="text" id="CreatorInput" placeholder="Start here..." maxlength="280">
-            </div>
-            <div class="creator-input-bottom">
-                <div class="entry-type">
-                    <span class="entry-inside-container">
-                        <span class="entry-text-and-icon selected-icon entry-category">
-                            <i class="ph-hash ph-md"></i>
-                        </span>
-                        <span class="entry-text-and-icon entry-task">
-                            <i class="ph-check-circle ph-md"></i>
-                        </span>
-                    </span>
-                </div><div class="entry-time">
-                    <span class="entry-inside-container">
-                        <span class="entry-text-and-icon selected-icon entry-now">
-                            <i class="ph-arrow-circle-down ph-md"></i>
-                        </span>
-                        <span class="entry-text-and-icon entry-later">
-                            <i class="ph-timer ph-md"></i>
-                        </span>
-                    </span>
+        <div class="creator-container">
+            <div class="creator creator-hide">
+                <div class="creator-input-top">
+                    <input type="text" id="CreatorInput" placeholder="Start here..." maxlength="280">
                 </div>
+                <div class="creator-input-bottom">
+                    <div class="entry-type">
+                        <span class="entry-inside-container">
+                            <span class="entry-text-and-icon selected-icon entry-category">
+                                <i class="ph-hash ph-md"></i>
+                            </span>
+                            <span class="entry-text-and-icon entry-task">
+                                <i class="ph-check-circle ph-md"></i>
+                            </span>
+                        </span>
+                    </div><div class="entry-time">
+                        <span class="entry-inside-container">
+                            <span class="entry-text-and-icon selected-icon entry-now">
+                                <i class="ph-arrow-circle-down ph-md"></i>
+                            </span>
+                            <span class="entry-text-and-icon entry-later">
+                                <i class="ph-timer ph-md"></i>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="clrs-container"></div>
+                <div class="ctgrs-container no-ctgr-selected"></div>
+                
+                <button class="creator-button">Add <span class="creator-button-name">Category</span></button>
             </div>
-            <div class="clrs-container"></div>
-            <div class="ctgrs-container no-ctgr-selected"></div>
-            
-            <button class="creator-button">Add <span class="creator-button-name">Category</span></button>
+    
+            <div class="creator-message">
+                Successfully Added!
+            </div>
         </div>
 
-        <div class="creator-message">
-            Successfully Added!
-        </div>
 
         <div class="invisible"></div>
         <div class="today">
@@ -85,14 +88,17 @@
         </div>
 
 
-        <div class="categories">
+        <div class="categories display-none">
             <h2>My Categories</h2>
             <div class="categories-list">
 
             </div>
         </div>
 
-        <div class="specific-category">
+        <div class="specific-category display-none">
+            <div class="specific-category-header">
+                <div class="go-back">← Back</div>
+            </div>
             <h2></h2>
             <div class="specific-category-tasks">
 
@@ -102,6 +108,17 @@
     </div>
 
 
+    <div class="user-utility-belt">
+        <div class="utility-belt-edge">
+            <div class="user-home user-utility-belt-active"><i class="ph-house"></i></div>
+            <div class="user-categories"><i class="ph-hash"></i></div>
+            <div class="user-shop"><i class="ph-shopping-cart-simple"></i></div>
+            <div class="user-profile"><i class="ph-user-circle"></i></div>
+        </div>
+        <div class="utility-belt-solo">
+            <div class="user-create"><i class="ph-plus-circle"></i></div>
+        </div>
+    </div>
 
 
     <div class="options-selector display-none">
@@ -119,7 +136,8 @@
         </div>
 
     </div>
-
+    <div class="invisible"></div>
+    
     <!-- <div class="main-container">
         <div class="header-container">
             <div class="header-row-container header-first-row-container">

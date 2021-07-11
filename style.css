@@ -17,7 +17,7 @@ body{
 
 
 .creator{
-    width:100%;
+    width:90%;
     border-radius:15px;
     /* background:#35303d; */
     background:#fff;
@@ -27,6 +27,19 @@ body{
     box-shadow: 1px 10px 206px -49px rgba(133,133,133,0.7);
     -webkit-box-shadow: 1px 10px 206px -49px rgba(133,133,133,0.7);
     -moz-box-shadow: 1px 10px 206px -49px rgba(133,133,133,0.7);
+    position:fixed;
+    bottom:100px;
+    transition:all ease-in-out .3s;
+    opacity:1;
+    visibility: visible;
+    max-width: var(--max-width);
+}
+
+.creator-hide{
+    bottom:0;
+    transition:all ease-in-out .3s;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .creator > div{
@@ -141,7 +154,7 @@ body{
 }
 
 .creator-message{
-    width:100%;
+    width:90%;
     height:fit-content;
     padding:20px 20px;
     font-size:.8rem;
@@ -153,6 +166,8 @@ body{
     opacity:0;
     transition:all ease-in-out .2s;
     color:#000;
+    position:fixed;
+    top:20px;
 }
 
 .show-creator-message{
@@ -204,13 +219,17 @@ body{
     color:var(--accent-color-900);
 }
 .task-category{
-    width:10%;
+    width:100%;
+    font-size:.7rem;
+    margin-bottom:15px;
+}
+.task-category:hover{
+    cursor:pointer;
 }
 .task-title{
     width:90%;
     word-wrap: break-word;
     overflow:hidden;
-    font-family:"Open Sans";
     font-weight:400;
 }
 
@@ -303,6 +322,56 @@ body{
 }
 .overflow-hidden{
     overflow: hidden !important;
+}
+
+.user-utility-belt{
+    position:fixed;
+    max-width: var(--max-width);
+    width:90%;
+    box-sizing: border-box;
+    bottom:30px;
+    color:rgb(0, 0, 0);
+    left:50%;
+    transform: translateX(-50%);
+    flex-direction: row;
+    display: flex;
+    
+}
+
+.utility-belt-edge,
+.utility-belt-solo{
+    border-radius:15px;
+    padding:20px;
+    flex-direction: row;
+    display: flex;
+    font-size:1.2rem;
+}
+
+.utility-belt-solo{
+    margin:0 0 0 10px;
+    background:var(--accent-color-900);
+    color:#fff;
+    width:10%;
+}
+
+.utility-belt-edge{
+    background:#fff;
+    width:90%;
+    box-shadow: 1px 10px 30px -10px rgba(4, 142, 254, 0.15);
+    -webkit-box-shadow: 1px 10px 30px -10px rgba(4, 142, 254, 0.15);
+    -moz-box-shadow: 1px 10px 30px -10px rgba(4, 142, 254, 0.15);
+}
+
+.utility-belt-edge > div,
+.utility-belt-solo > div{
+    width:100%;
+    text-align: center;
+    transition: all ease-in-out .3s;
+}
+
+.user-utility-belt-active{
+    color:var(--accent-color-900) !important;
+    transition: all ease-in-out .3s;
 }
 
 @media screen and (max-width: 530px) {
