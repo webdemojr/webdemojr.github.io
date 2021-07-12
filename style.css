@@ -26,7 +26,6 @@ body{
     border-radius:15px;
     /* background:#35303d; */
     background:#fff;
-    height:fit-content;
     padding:20px;
     box-sizing: border-box;
     box-shadow: 1px 10px 206px -49px rgba(133,133,133,0.7);
@@ -160,7 +159,6 @@ body{
 
 .creator-message{
     width:90%;
-    height:fit-content;
     padding:20px 20px;
     font-size:.8rem;
     background:transparent;
