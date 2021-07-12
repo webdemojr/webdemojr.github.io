@@ -11,8 +11,13 @@ var categorySelected;
 $(document).ready(function(){
 
 
+    
 
 
+    
+
+    CheckTime();
+    setInterval(CheckTime,60*1000);
 
 
 
@@ -49,7 +54,7 @@ $(document).ready(function(){
 
             if($(".ctgrs-container").hasClass("no-ctgr-selected")){
                 $(".ctgrs-container").addClass("unavailable-color");
-                $(".ctgrs-container").text("No Categories Selected");
+                $(".ctgrs-container").text("Tap Here to Select Category");
             }
         }
     });
@@ -143,44 +148,33 @@ $(document).ready(function(){
     });
 
     $(".specific-category-tasks").on("click", ".task-to-today", function(){
-  
-
-        
         let taskid = $(this).data("target");
 
         if(!$(this).hasClass("selected-icon")){
-            console.log("in");
             User.AddTasktoToday(taskid);
             BuildTodayTasks();
             $(this).addClass("selected-icon");
         }else{
-            console.log("in 2");
             User.RemoveTaskfromToday(taskid);
             BuildTodayTasks();
             $(this).removeClass("selected-icon");
-
         }
         
     });
 
 
     $(".categories-list").on("click", ".category", function(){
-       
-        let $thisid = $(this).attr("id");
-        let thiscat = User.GetSpecificCategory($thisid);
-        $(".specific-category h2").text(thiscat.title);
-        $(".specific-category").removeClass("display-none");
-        BuildTasks(thiscat);
-        $(".categories").addClass("display-none");
+        OpenCategory($(this));
     });
 
+    // $('.specific-category-input').on("input", function() {
+    //     var dInput = this.value;
+    //     var thisid = this.attr("id");
+    //     User.ChangeCategoryTitle(thisid, dInput);
+    // });
+
     $(".today-list").on("click", ".task-category", function(){
-        console.log("Clicked");
-        let $thisid = $(this).attr("id");
-        let thiscat = User.GetSpecificCategory($thisid);
-        $(".specific-category h2").text(thiscat.title);
-        $(".specific-category").removeClass("display-none");
-        BuildTasks(thiscat);
+        OpenCategory($(this));
     });
 
     $(".go-back").click(function(){
@@ -191,9 +185,12 @@ $(document).ready(function(){
     $(".user-create").click(function(){
         if($(".creator").hasClass("creator-hide")){
             $(".creator").removeClass("creator-hide");
+            $(".utility-belt-solo").addClass("focused-utility");
             $(".user-create i").removeClass("ph-plus-circle").addClass("ph-x-circle");
+            $("#CreatorInput").focus();
         }else{
             $(".creator").addClass("creator-hide");
+            $(".utility-belt-solo").removeClass("focused-utility");
             $(".user-create i").addClass("ph-plus-circle").removeClass("ph-x-circle");
         }
     });
@@ -202,98 +199,149 @@ $(document).ready(function(){
     $(".utility-belt-edge > div").click(function(){
         $(this).addClass("user-utility-belt-active").siblings().removeClass('user-utility-belt-active');
         if($(this).hasClass("user-categories")){
-            $(".categories").removeClass("display-none");
-            $(".today").addClass("display-none");
-            $(".specific-category").addClass("display-none");
+            OpenCategories();
         }else if($(this).hasClass("user-shop")){
 
         }else if($(this).hasClass("user-profile")){
 
         }else if($(this).hasClass("user-home")){
-            $(".categories").addClass("display-none");
-            $(".today").removeClass("display-none");
-            $(".specific-category").addClass("display-none");
+            OpenHome();
         }
+    });
+
+    
+    $(".specific-category-delete").click(function(){
+        let $thisid = $(this).attr("id");
+        User.DeleteCategory($thisid);
+        OpenCategories();
     });
 
 
 });
 
+
+function OpenHome(){
+    BuildTodayTasks();
+    $(".categories").addClass("display-none");
+    $(".today").removeClass("display-none");
+    $(".specific-category").addClass("display-none");
+}
+
+function OpenCategories(){
+    BuildCategories();
+    $(".categories").removeClass("display-none");
+    $(".today").addClass("display-none");
+    $(".specific-category").addClass("display-none");
+}
+
+function OpenShop(){
+
+}
+
+function OpenProfile(){
+
+}
+
 function CreateUserInput(){
             let input = $("#CreatorInput").val().trim();
 
             if(input != ""){
-                
-                if($(".entry-category").hasClass("selected-icon")){
-                    if(colorSelected == undefined){
-                        colorSelected = "CLR00";
-                    }
-                    let new_cat = C.CreateCategory(input, colorSelected);
-                    let clone = {...new_cat};
-                    User.AddCategory(clone);
-                    let user_cat = User.GetCategories();
-                    console.log(user_cat);
-                    $("#CreatorInput").val("");
-                    
-                    $(".options-selector-items-list").empty();
-                    for(let i=user_cat.length-1; i>=0; i--){
+                let input_healthy = CheckTextHealth(input);
 
-                        let foundClr = Clr.list.find(x => x.id == user_cat[i].color);
-
-                        let $option_item = $("<div id='" + user_cat[i].id + "' class='options-selector-item'><span class='option-item-icon'><i class='ph-hash' style='color:" + foundClr.colorHEX + "'></i></span><span class='option-item-name'>" + user_cat[i].title + "</span></div>")
-                        $(".options-selector-items-list").append($option_item);
-
-                    }
-                    BuilCategories();
-
-                    $(".creator-message").addClass("show-creator-message").addClass("message-success").removeClass("message-error");
-                    $(".creator-message").text("Successfully Added!");
-                    setTimeout(function(){ $(".creator-message").removeClass("show-creator-message"); }, 1000);
-                    
-                }else if($(".entry-task").hasClass("selected-icon")){
-                    console.log(categorySelected);
-                    if(categorySelected != undefined){
-
-                        if(taskNow){
-
-                        
-                            let new_task = T.CreateTask(categorySelected, input, true);
-                            let clone = {...new_task};
-                            User.AddTask(clone);
-                            
-                            let specific_cat = User.GetSpecificCategory(categorySelected);
-    
-                            BuildTodayTasks();
-                            BuildTasks(specific_cat);
-    
-                        }else if(taskLater){
-                            let new_task = T.CreateTask(categorySelected, input, false);
-                            let clone = {...new_task};
-                            User.AddTask(clone);
-
-                            let specific_cat = User.GetSpecificCategory(categorySelected);
-                            BuildTasks(specific_cat);
-    
-                        } 
+                if(input_healthy){
+                    if($(".entry-category").hasClass("selected-icon")){
+                        if(colorSelected == undefined){
+                            colorSelected = "CLR00";
+                        }
+                        let new_cat = C.CreateCategory(input, colorSelected);
+                        let clone = {...new_cat};
+                        User.AddCategory(clone);
+                        let user_cat = User.GetCategories();
+                        console.log(user_cat);
                         $("#CreatorInput").val("");
+                        
+                        $(".options-selector-items-list").empty();
+                        for(let i=user_cat.length-1; i>=0; i--){
+    
+                            let foundClr = Clr.list.find(x => x.id == user_cat[i].color);
+    
+                            let $option_item = $("<div id='" + user_cat[i].id + "' class='options-selector-item'><span class='option-item-icon'><i class='ph-hash' style='color:" + foundClr.colorHEX + "'></i></span><span class='option-item-name'>" + user_cat[i].title + "</span></div>")
+                            $(".options-selector-items-list").append($option_item);
+    
+                        }
+                        BuildCategories();
+    
                         $(".creator-message").addClass("show-creator-message").addClass("message-success").removeClass("message-error");
                         $(".creator-message").text("Successfully Added!");
                         setTimeout(function(){ $(".creator-message").removeClass("show-creator-message"); }, 1000);
-                    }else{
-                        $(".creator-message").addClass("show-creator-message").removeClass("message-success").addClass("message-error");
-                        $(".creator-message").text("Please Select a Category!");
-                        setTimeout(function(){ $(".creator-message").removeClass("show-creator-message"); }, 2000);
+                        
+                    }else if($(".entry-task").hasClass("selected-icon")){
+                        console.log(categorySelected);
+                        if(categorySelected != undefined){
+    
+                            if(taskNow){
+    
+                            
+                                let new_task = T.CreateTask(categorySelected, input, true);
+                                let clone = {...new_task};
+                                User.AddTask(clone);
+                                
+                                let specific_cat = User.GetSpecificCategory(categorySelected);
+        
+                                BuildTodayTasks();
+                                BuildTasks(specific_cat);
+        
+                            }else if(taskLater){
+                                let new_task = T.CreateTask(categorySelected, input, false);
+                                let clone = {...new_task};
+                                User.AddTask(clone);
+    
+                                let specific_cat = User.GetSpecificCategory(categorySelected);
+                                BuildTasks(specific_cat);
+        
+                            } 
+                            $("#CreatorInput").val("");
+                            $(".creator-message").addClass("show-creator-message").addClass("message-success").removeClass("message-error");
+                            $(".creator-message").text("Successfully Added!");
+                            setTimeout(function(){ $(".creator-message").removeClass("show-creator-message"); }, 1000);
+                        }else{
+                            $(".creator-message").addClass("show-creator-message").removeClass("message-success").addClass("message-error");
+                            $(".creator-message").text("Please Select a Category!");
+                            setTimeout(function(){ $(".creator-message").removeClass("show-creator-message"); }, 2000);
+                        }
+                        
+    
                     }
-                    
-
+                }else{
+                    $("#CreatorInput").val("");
                 }
+                
             }else{
                 $("#CreatorInput").val("");
             }
 
 }
 
-function BuilCategories(){
+
+function OpenCategory($this){
+    let $thisid = $this.attr("id");
+    let thiscat = User.GetSpecificCategory($thisid);
+    let clr = Clr.GetSpecificColor(thiscat.color);
+
+    $(".specific-category-title").text(thiscat.title);
+    $(".specific-category-hashtag").css("color",clr.colorHEX);
+    $(".specific-category-delete").attr("id",$thisid);
+    $(".specific-category-edit").attr("id",$thisid);
+
+    $(".user-categories").addClass("user-utility-belt-active").siblings().removeClass('user-utility-belt-active');
+    $(".today").addClass("display-none");
+    $(".categories").addClass("display-none");
+    $(".specific-category").removeClass("display-none");
+
+    BuildTasks(thiscat);
+}
+
+function BuildCategories(){
     let user_categories = User.GetCategories();
 
 
@@ -378,6 +426,56 @@ function DeleteThisTask(taskid){
 
 }
 
+function GetTodayDate(){
+    let monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+    let dateObj = new Date();
+    let month = monthNames[dateObj.getMonth()];
+    let day = String(dateObj.getDate()).padStart(2, '0');
+    let year = dateObj.getFullYear();
+    let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    let d = new Date();
+    let dayName = days[d.getDay()];
+    let output = dayName + ' ' + month  + '\n'+ day  + ', ' + year;
+
+    return output;
+}
+
+export function CheckTextHealth(x) {
+
+    var reg = /<(.|\n)*?>/g;
+
+    if (reg.test(x) == true) {
+        return false;
+
+    }else{
+        return true;
+    }
+}
+
+function CheckTime(){
+    console.log("checked time");
+    let date = new Date();
+    let hours = date.getHours();
+    
+    let today = GetTodayDate();
+
+    console.log(hours);
+
+    if(hours >= 0 && hours <= 12){
+        console.log("inside morning");
+        $(".user-launch-greeting-text-time").text("morning");
+        $(".user-launch-greeting-date").text("🌤 " + today);
+    }else if(hours > 12 && hours <= 19){
+        console.log("inside afternoon");
+        $(".user-launch-greeting-text-time").text("afternoon");
+        $(".user-launch-greeting-date").text("☀️ " + today);
+    }else if(hours > 19){
+        console.log("inside evening");
+        $(".user-launch-greeting-text-time").text("evening");
+        $(".user-launch-greeting-date").text("🌙 " + today);
+    }
+}
 
 
 

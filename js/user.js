@@ -51,6 +51,14 @@ export function GetSpecificCategory(id){
     }
 }
 
+export function ChangeCategoryTitle(catid, new_title){
+    for(let i = 0; i < user.categories.length; i++){
+        if(user.categories[i].id == catid){
+            user.categories[i].title = new_title;
+        }
+    }
+}
+
 
 
 // Task
