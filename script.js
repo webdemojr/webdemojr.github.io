@@ -164,7 +164,8 @@ $(document).ready(function(){
 
 
     $(".categories-list").on("click", ".category", function(){
-        OpenCategory($(this));
+        let $thisid = $(this).attr("id");
+        OpenCategory($thisid);
     });
 
     // $('.specific-category-input').on("input", function() {
@@ -174,15 +175,17 @@ $(document).ready(function(){
     // });
 
     $(".today-list").on("click", ".task-category", function(){
-        OpenCategory($(this));
+        let $thisid = $(this).attr("id");
+        OpenCategory($thisid);
     });
 
     $(".go-back").click(function(){
         $(".specific-category").addClass("display-none");
         $(".categories").removeClass("display-none");
+        OpenCategories();
     });
 
-    $(".user-create").click(function(){
+    $(".utility-belt-solo").click(function(){
         if($(".creator").hasClass("creator-hide")){
             $(".creator").removeClass("creator-hide");
             $(".utility-belt-solo").addClass("focused-utility");
@@ -216,6 +219,50 @@ $(document).ready(function(){
         OpenCategories();
     });
 
+    $(".specific-category-edit").click(function(){
+        let $thisid = $(this).attr("id");
+        let thiscat = User.GetSpecificCategory($thisid);
+        $(".edit-specific-category-window").removeClass("display-none");
+        $(".edit-specific-category-window-input").val(thiscat.title);
+        $(".submit-new-category").data("target",$thisid);
+
+        for(let i=0; i<Clr.list.length;i++){
+            let $clr = $("<div id='" + Clr.list[i].id + "' class='clr-list-item'><span class='clr-list-item-ball' style='background-color:" + Clr.list[i].colorHEX + "'></span></div>");
+            if(Clr.list[i].id == thiscat.color){
+                $clr.addClass("clr-list-item-selected");
+            }
+            $(".edit-specific-category-window-clrs-container").append($clr);
+        }
+    });
+
+    $(".edit-specific-category-window-clrs-container").on("click", ".clr-list-item", function(){
+        $(this).addClass('clr-list-item-selected').siblings().removeClass('clr-list-item-selected');
+        colorSelected = $(this).attr("id");
+    });
+
+    $(".close-edit-specific-category").click(function(){
+        $(".edit-specific-category-window").addClass("display-none");
+        $(".edit-specific-category-window-clrs-container").empty();
+    });
+
+    $(".submit-new-category").click(function(){
+        let cat_id = $(this).data("target");
+        let new_cat_title = $(".edit-specific-category-window-input").val().trim();
+
+        if(new_cat_title != ""){
+            let input_healthy = CheckTextHealth(new_cat_title);
+
+            if(input_healthy){
+                User.UpdateCategory(cat_id, new_cat_title, colorSelected);
+                $(".edit-specific-category-window").addClass("display-none");
+                $(".edit-specific-category-window-clrs-container").empty();
+                OpenCategory(cat_id);
+                let user_cat = User.GetCategories();
+                BuildCategoryOptions(user_cat);
+            }
+        }
+        
+    });
 
 });
 
@@ -260,15 +307,7 @@ function CreateUserInput(){
                         console.log(user_cat);
                         $("#CreatorInput").val("");
                         
-                        $(".options-selector-items-list").empty();
-                        for(let i=user_cat.length-1; i>=0; i--){
-    
-                            let foundClr = Clr.list.find(x => x.id == user_cat[i].color);
-    
-                            let $option_item = $("<div id='" + user_cat[i].id + "' class='options-selector-item'><span class='option-item-icon'><i class='ph-hash' style='color:" + foundClr.colorHEX + "'></i></span><span class='option-item-name'>" + user_cat[i].title + "</span></div>")
-                            $(".options-selector-items-list").append($option_item);
-    
-                        }
+                        BuildCategoryOptions(user_cat);
                         BuildCategories();
     
                         $(".creator-message").addClass("show-creator-message").addClass("message-success").removeClass("message-error");
@@ -323,8 +362,8 @@ function CreateUserInput(){
 }
 
 
-function OpenCategory($this){
-    let $thisid = $this.attr("id");
+function OpenCategory($thisid){
+    
     let thiscat = User.GetSpecificCategory($thisid);
     let clr = Clr.GetSpecificColor(thiscat.color);
 
@@ -353,6 +392,18 @@ function BuildCategories(){
         let colorfound = Clr.GetSpecificColor(user_categories[i].color);
         let $category = $("<span id='" + user_categories[i].id + "' class='category'><span class='category-icon'><i class='ph-hash' style='color:" + colorfound.colorHEX + "'></i></span><span class='category-title'>" + user_categories[i].title + "</span></span>")
         categorieslist.append($category);
+    }
+}
+
+function BuildCategoryOptions(list){
+    $(".options-selector-items-list").empty();
+    for(let i=list.length-1; i>=0; i--){
+
+        let foundClr = Clr.list.find(x => x.id == list[i].color);
+
+        let $option_item = $("<div id='" + list[i].id + "' class='options-selector-item'><span class='option-item-icon'><i class='ph-hash' style='color:" + foundClr.colorHEX + "'></i></span><span class='option-item-name'>" + list[i].title + "</span></div>")
+        $(".options-selector-items-list").append($option_item);
+
     }
 }
 
