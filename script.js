@@ -189,12 +189,12 @@ $(document).ready(function(){
         if($(".creator").hasClass("creator-hide")){
             $(".creator").removeClass("creator-hide");
             $(".utility-belt-solo").addClass("focused-utility");
-            $(".user-create i").removeClass("ph-plus-circle").addClass("ph-x-circle");
+            $(".user-create i").removeClass("ph-plus").addClass("ph-x");
             $("#CreatorInput").focus();
         }else{
             $(".creator").addClass("creator-hide");
             $(".utility-belt-solo").removeClass("focused-utility");
-            $(".user-create i").addClass("ph-plus-circle").removeClass("ph-x-circle");
+            $(".user-create i").addClass("ph-plus").removeClass("ph-x");
         }
     });
 
@@ -259,6 +259,7 @@ $(document).ready(function(){
                 OpenCategory(cat_id);
                 let user_cat = User.GetCategories();
                 BuildCategoryOptions(user_cat);
+                $(".ctgrs-container").text(new_cat_title);
             }
         }
         

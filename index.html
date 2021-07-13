@@ -10,7 +10,7 @@
     <script src="https://unpkg.com/phosphor-icons"></script>
     <title>Todo App</title>
 </head>
-<body>
+<body class=''>
 
     <div class="full-cover display-none"></div>
 
@@ -25,6 +25,13 @@
                 </div>
                 
             </div>
+        </div>
+
+        <div class="utility-belt-edge">
+            <div class="user-home user-utility-belt-active"><i class="ph-house"></i></div>
+            <div class="user-categories"><i class="ph-hash"></i></div>
+            <div class="user-shop"><i class="ph-shopping-cart-simple"></i></div>
+            <div class="user-profile"><i class="ph-user-circle"></i></div>
         </div>
 
         <div class="user-stats"></div>
@@ -123,14 +130,9 @@
 
 
     <div class="user-utility-belt">
-        <div class="utility-belt-edge">
-            <div class="user-home user-utility-belt-active"><i class="ph-house"></i></div>
-            <div class="user-categories"><i class="ph-hash"></i></div>
-            <div class="user-shop"><i class="ph-shopping-cart-simple"></i></div>
-            <div class="user-profile"><i class="ph-user-circle"></i></div>
-        </div>
+        
         <div class="utility-belt-solo">
-            <div class="user-create"><i class="ph-plus-circle"></i></div>
+            <div class="user-create"><i class="ph-plus"></i></div>
         </div>
     </div>
 
@@ -158,62 +160,14 @@
             <div class="close-edit-specific-category">
                 <i class="ph-x"></i>
             </div>
+            <h4>Edit Category Title & Color</h4>
             <input class="edit-specific-category-window-input" type="text" placeholder="New Title for Category" maxlength="280">
             <div class="edit-specific-category-window-clrs-container"></div>
-            <button class="submit-new-category">Save</button>
+            <button class="submit-new-category">Save Edit</button>
         </div>
     </div>
     <div class="invisible"></div>
     
-    <!-- <div class="main-container">
-        <div class="header-container">
-            <div class="header-row-container header-first-row-container">
-                <div class="logo">ToDoApp</div><div class="profile">Jason</div>
-            </div>
-            <div class="header-row-container header-second-row-container">
-                <div class="shop">🛒 Shop</div><div class="user-profile-stats">
-                    <div class="user-wallet-amount">100 <span class='user-wallet-icon'>🍉</span></div><div class="user-profile-stat-level">2 🎖</div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="category-container">
-            <h2>My Categories</h2>
-            <div class="create-category">
-
-                <input tabindex="1" id="InputCategory" class="input-outline-idle" type="text" placeholder="Create New Category." maxlength="16"/><button tabindex="2" class="button-add-category button-outline-accent">+</button>
-                <div class="category-list">
-            
-                </div>
-            </div>
-        </div>
-
-        <div class="tasks-container specific-category display-none">
-            <div class="category-header"><div class="go-back go-back-from-task">← Back</div><div class="category-details">
-                <div class="specific-category-edit specific-category-button button-outline-accent">Edit</div><div class="specific-category-delete specific-category-button button-outline-danger"><img src="assets/icons/delete-red.svg"></div>
-            </div>
-            </div>
-            
-            <h2></h2>
-
-            <input tabindex="3" id="InputTask" type="text" class="input-outline-idle" placeholder="Type your task here."/><button tabindex="5" class="button-add-task button-outline-accent">+</button>
-
-            <div class="task-list">
-
-            </div>
-        </div>
-
-    </div> -->
-
-
-
-
-
-    <!-- <div class="specific-category display-none">
-        <h2></h2>
-        
-    </div> -->
 
     
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>

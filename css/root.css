@@ -1,13 +1,26 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 :root{
-    --max-width:700px;
+    --max-width:750px;
     --accent-color-900:#048efe;
     --accent-color-100:#e2e5ff;
-    --background-color-100:#fff;
-    --background-color-200:#f8f7fa;
-    --text-color-800:#262626;
-    --text-color-100:#fff;
-    --primary-font:"Raleway";
+    --background-color:#fff;
+    --neutral-color-200:#d6d6d6;
+    --primary-text-color:#262626;
+    --secondary-text-color:#fff;
+    --primary-font:"Lato";
+    --creator-shadow:rgba(133,133,133,0.7);
+}
+
+
+.dark-mode{
+    --accent-color-900:#80c6ff;
+    --accent-color-100:#e2e5ff;
+    --background-color:#1c1e22;
+    --neutral-color-200:#3b3b3b;
+    --primary-text-color:rgb(228, 228, 228);
+    --secondary-text-color:#262626;
+    --creator-shadow:rgba(10, 46, 80, 0.7);
 }
