@@ -422,11 +422,11 @@ function BuildTodayTasks(){
         let specificCategory = User.GetSpecificCategory(today_tasks[i].category_id);
         let colorfound = Clr.GetSpecificColor(specificCategory.color);
         
-       let $taskcontainer = $("<div id='" + today_tasks[i].id + "' class='task-container' style='border-left:2px solid " + colorfound.colorHEX +"'></div>");
-       let $taskdetails = $("<div class='task-inner-container task-details'></div>");
+       let $taskcontainer = $("<div id='" + today_tasks[i].id + "' class='task-container'></div>");
+       let $taskdetails = $("<div class='task-inner-container task-details' style='border-left:2px solid " + colorfound.colorHEX +"'></div>");
        let $taskcategory = $("<div id='" + specificCategory.id + "' class='task-category' style='color:" + colorfound.colorHEX + "'><i class='ph-hash'></i>" + specificCategory.title + "</div><div class='task-title'>" + today_tasks[i].title + "</div>");
        let $taskactions = $("<div class='task-inner-container task-actions'></div>");
-       let $taskactionsicons = $("<div data-target='" + today_tasks[i].id + "' class='task-check'><i class='ph-check'></i></div><div data-target='" + today_tasks[i].id + "' class='task-cancel'><i class='ph-x'></i></div><div data-target='" + today_tasks[i].id + "' class='task-delete'><i class='ph-trash'></i></div>");
+       let $taskactionsicons = $("<div data-target='" + today_tasks[i].id + "' class='task-check task-action'><i class='ph-check'></i></div><div data-target='" + today_tasks[i].id + "' class='task-cancel task-action'><i class='ph-x'></i></div><div data-target='" + today_tasks[i].id + "' class='task-delete task-action'><i class='ph-trash'></i></div>");
             
        $taskdetails.append($taskcategory);
        $taskactions.append($taskactionsicons);
@@ -454,9 +454,9 @@ function BuildTasks(category){
         let $taskactionsicons;
 
         if(taskslist[i].isToday){
-            $taskactionsicons = $("<div data-target='" + taskslist[i].id + "' class='task-check'><i class='ph-check'></i></div><div data-target='" + taskslist[i].id + "' class='task-to-today selected-icon'><i class='ph-folder-simple-plus'></i></div><div data-target='" + taskslist[i].id + "' class='task-delete'><i class='ph-trash'></i></div>");
+            $taskactionsicons = $("<div data-target='" + taskslist[i].id + "' class='task-check task-action'><i class='ph-check'></i></div><div data-target='" + taskslist[i].id + "' class='task-to-today selected-icon task-action'><i class='ph-folder-simple-plus'></i></div><div data-target='" + taskslist[i].id + "' class='task-delete task-action'><i class='ph-trash'></i></div>");
         }else{
-            $taskactionsicons = $("<div data-target='" + taskslist[i].id + "' class='task-check'><i class='ph-check'></i></div><div data-target='" + taskslist[i].id + "' class='task-to-today'><i class='ph-folder-simple-plus'></i></div><div data-target='" + taskslist[i].id + "' class='task-delete'><i class='ph-trash'></i></div>");
+            $taskactionsicons = $("<div data-target='" + taskslist[i].id + "' class='task-check task-action'><i class='ph-check'></i></div><div data-target='" + taskslist[i].id + "' class='task-to-today task-action'><i class='ph-folder-simple-plus'></i></div><div data-target='" + taskslist[i].id + "' class='task-delete task-action'><i class='ph-trash'></i></div>");
         }
 
         $taskdetails.append($taskcategory);
