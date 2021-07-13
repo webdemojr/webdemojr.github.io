@@ -422,7 +422,7 @@ function BuildTodayTasks(){
         let specificCategory = User.GetSpecificCategory(today_tasks[i].category_id);
         let colorfound = Clr.GetSpecificColor(specificCategory.color);
         
-       let $taskcontainer = $("<div id='" + today_tasks[i].id + "' class='task-container' style='border-left:2px solid " + colorfound.colorHEX +";border-bottom:2px solid " + colorfound.colorHEX + "'></div>");
+       let $taskcontainer = $("<div id='" + today_tasks[i].id + "' class='task-container' style='border-left:2px solid " + colorfound.colorHEX +"'></div>");
        let $taskdetails = $("<div class='task-inner-container task-details'></div>");
        let $taskcategory = $("<div id='" + specificCategory.id + "' class='task-category' style='color:" + colorfound.colorHEX + "'><i class='ph-hash'></i>" + specificCategory.title + "</div><div class='task-title'>" + today_tasks[i].title + "</div>");
        let $taskactions = $("<div class='task-inner-container task-actions'></div>");
