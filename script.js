@@ -422,7 +422,7 @@ function BuildTodayTasks(){
         let specificCategory = User.GetSpecificCategory(today_tasks[i].category_id);
         let colorfound = Clr.GetSpecificColor(specificCategory.color);
         
-       let $taskcontainer = $("<div id='" + today_tasks[i].id + "' class='task-container'></div>");
+       let $taskcontainer = $("<div id='" + today_tasks[i].id + "' class='task-container' style='border-left:1px solid " + colorfound.colorHEX +"'></div>");
        let $taskdetails = $("<div class='task-inner-container task-details'></div>");
        let $taskcategory = $("<div id='" + specificCategory.id + "' class='task-category' style='color:" + colorfound.colorHEX + "'><i class='ph-hash'></i>" + specificCategory.title + "</div><div class='task-title'>" + today_tasks[i].title + "</div>");
        let $taskactions = $("<div class='task-inner-container task-actions'></div>");
@@ -514,15 +514,15 @@ function CheckTime(){
 
     console.log(hours);
 
-    if(hours >= 0 && hours <= 12){
+    if(hours >= 0 && hours < 12){
         console.log("inside morning");
         $(".user-launch-greeting-text-time").text("morning");
         $(".user-launch-greeting-date").text("🌤 " + today);
-    }else if(hours > 12 && hours <= 19){
+    }else if(hours >= 12 && hours < 19){
         console.log("inside afternoon");
         $(".user-launch-greeting-text-time").text("afternoon");
         $(".user-launch-greeting-date").text("☀️ " + today);
-    }else if(hours > 19){
+    }else if(hours >= 19){
         console.log("inside evening");
         $(".user-launch-greeting-text-time").text("evening");
         $(".user-launch-greeting-date").text("🌙 " + today);
