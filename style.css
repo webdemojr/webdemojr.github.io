@@ -201,11 +201,14 @@ h2{
 .task-container{
     width:100%;
     padding:20px;
-    /* border-radius:5px; */
+    border-radius:10px;
     margin:10px 0;
     box-sizing: border-box;
     background:var(--background-color);
     /* border:1px solid rgba(4, 142, 254, 0.1); */
+    box-shadow: 1px 10px 30px -10px rgba(4, 142, 254, 0.15);
+    -webkit-box-shadow: 1px 10px 30px -10px rgba(4, 142, 254, 0.15);
+    -moz-box-shadow: 1px 10px 30px -10px rgba(4, 142, 254, 0.15);
 }
 
 .task-details, .task-actions{
