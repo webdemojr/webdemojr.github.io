@@ -462,8 +462,9 @@ h2{
 
 .user-launch-greeting-date{
     font-size:1rem;
-    font-weight:600;
-    margin-bottom:10px;
+    font-weight:200;
+    margin:10px 0;
+    padding:0 0 0 10px
 }
 
 .focused-utility{
@@ -593,6 +594,11 @@ h2{
 .shop{
     flex-basis:48%;
     margin:10px 0px 0px 10px;
+}
+
+.user-launch-greeting-text-icon{
+    padding:10px;
+    font-size:1.2rem;
 }
 
 

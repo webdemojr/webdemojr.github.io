@@ -251,7 +251,12 @@ $(document).ready(function(){
                 OpenCategory(cat_id);
                 let user_cat = User.GetCategories();
                 BuildCategoryOptions(user_cat);
-                $(".ctgrs-container").text(new_cat_title);
+
+                if(cat_id == categorySelected){
+                    let alreadySelected = User.GetSpecificCategory(cat_id);
+                    $(".ctgrs-container").text(alreadySelected.title);
+                }
+                
             }
         }
         
@@ -317,19 +322,30 @@ function CreateUserInput(){
                                 let new_task = T.CreateTask(categorySelected, input, true);
                                 let clone = {...new_task};
                                 User.AddTask(clone);
-                                
-                                let specific_cat = User.GetSpecificCategory(categorySelected);
         
                                 BuildTodayTasks();
-                                BuildTasks(specific_cat);
+
+                                let specific_cat_status = $(".specific-category").attr("id");
+                                if(specific_cat_status == categorySelected){
+                                    let specific_cat = User.GetSpecificCategory(categorySelected);
+                                    BuildTasks(specific_cat);
+                                }else{
+                                    
+                                }
         
                             }else if(taskLater){
                                 let new_task = T.CreateTask(categorySelected, input, false);
                                 let clone = {...new_task};
                                 User.AddTask(clone);
     
-                                let specific_cat = User.GetSpecificCategory(categorySelected);
-                                BuildTasks(specific_cat);
+                                let specific_cat_status = $(".specific-category").attr("id");
+                                if(specific_cat_status == categorySelected){
+                                    let specific_cat = User.GetSpecificCategory(categorySelected);
+                                    BuildTasks(specific_cat);
+                                }else{
+                                    
+                                }
+                                
         
                             } 
                             $("#CreatorInput").val("");
@@ -360,6 +376,7 @@ function OpenCategory($thisid){
     let thiscat = User.GetSpecificCategory($thisid);
     let clr = Clr.GetSpecificColor(thiscat.color);
 
+    $(".specific-category").attr("id", $thisid);
     $(".specific-category-title").text(thiscat.title);
     $(".specific-category-hashtag").css("color",clr.colorHEX);
     $(".specific-category-delete").attr("id",$thisid);
@@ -434,7 +451,6 @@ function BuildTodayTasks(){
 function BuildTasks(category){
     let user_tasks = User.GetTasks();
     let taskslist = user_tasks.filter(x => x.category_id == category.id);
-    let colorfound = Clr.GetSpecificColor(category.color);
     let specificCategoryTasks = $(".specific-category-tasks");
     specificCategoryTasks.empty();
 
@@ -507,17 +523,19 @@ function CheckTime(){
     console.log(hours);
 
     if(hours >= 0 && hours < 12){
-        console.log("inside morning");
+        $("body").removeClass("dark-mode");
         $(".user-launch-greeting-text-time").text("morning");
-        $(".user-launch-greeting-date").text("🌤 " + today);
+        $(".user-launch-greeting-date").text(today);
+        $(".user-launch-greeting-text-icon i").addClass("ph-sun-horizon").removeClass("ph-sun").removeClass("ph-moon");
     }else if(hours >= 12 && hours < 19){
-        console.log("inside afternoon");
         $(".user-launch-greeting-text-time").text("afternoon");
-        $(".user-launch-greeting-date").text("☀️ " + today);
+        $(".user-launch-greeting-date").text(today);
+        $(".user-launch-greeting-text-icon i").addClass("ph-sun").removeClass("ph-sun-horizon").removeClass("ph-moon");
     }else if(hours >= 19){
-        console.log("inside evening");
+        $("body").addClass("dark-mode");
         $(".user-launch-greeting-text-time").text("evening");
-        $(".user-launch-greeting-date").text("🌙 " + today);
+        $(".user-launch-greeting-date").text(today);
+        $(".user-launch-greeting-text-icon i").addClass("ph-moon").removeClass("ph-sun-horizon").removeClass("ph-sun");
     }
 }
 
