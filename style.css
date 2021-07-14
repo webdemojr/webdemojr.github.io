@@ -30,7 +30,7 @@ h2{
 .creator{
     width:90%;
     border-radius:15px;
-    background:var(--primary-background-color);
+    background:var(--secondary-background-color);
     padding:20px;
     box-sizing: border-box;
     box-shadow: 1px 10px 206px -49px var(--creator-shadow);
@@ -153,6 +153,10 @@ h2{
     color:var(--accent-color-900) !important;
 }
 
+.selected-icon i{
+    opacity:1 !important;
+}
+
 .creator-button{
     width:100%;
     padding:10px 0;
@@ -206,14 +210,17 @@ h2{
     padding:20px 20px 0 20px;
     margin:10px 0;
     box-sizing: border-box;
-    background:var(--secondary-background-color);
+    background:var(--third-background-color);
     border-radius:10px;
     /* border:1px solid rgba(4, 142, 254, 0.1); */
     box-shadow: 1px 10px 30px -10px var(--creator-shadow);
     -webkit-box-shadow: 1px 10px 30px -10px var(--creator-shadow);
     -moz-box-shadow: 1px 10px 30px -10px var(--creator-shadow);
 }
-
+.task-details{
+    padding:0 20px;
+    box-sizing: border-box;
+}
 .task-details, .task-actions{
     width:100%;
     display:block;
@@ -222,7 +229,7 @@ h2{
     text-align: center;
 }
 .task-inner-container{
-    padding:0 20px;
+    
 }
 .task-container i{
     opacity:.3;
@@ -264,6 +271,10 @@ h2{
 .task-check{
     width:25%;
     text-align: center;
+}
+
+.task-to-today:hover{
+    cursor:pointer;
 }
 
 .task-to-today:hover i,
@@ -354,7 +365,7 @@ h2{
     border:1px solid rgba(4, 142, 254, 0.15);
     word-wrap: break-word;
     white-space: pre-line;
-    max-width:200px;
+    max-width:100px;
 }
 .category:hover{
     cursor:pointer;
@@ -461,6 +472,10 @@ h2{
     border:1px solid var(--accent-color-900);
 }
 
+.specific-category{
+    margin-top:50px;
+}
+
 .specific-category-header{
     display:flex;
     flex-direction: row;
@@ -533,6 +548,67 @@ h2{
     word-wrap: break-all;
 }
 
+
+.dashboard{
+    max-width: var(--max-width);
+    width:100%;
+    display:flex;
+    flex-wrap: wrap;
+    margin-top:20px;
+}
+
+.dashboard-card{
+    background:var(--secondary-background-color);
+    border-radius:10px;
+    padding:20px;
+    min-width:200px;
+    box-sizing: border-box;
+    height:400px;
+}
+
+.dashboard-card-title h2{
+    margin-top:0;
+    padding-top:0;
+}
+
+.dashboard-card-content{
+    overflow-y: auto;
+    overflow-x: hidden;
+    height:300px;
+}
+
+.today{
+    flex-basis:60%;
+    margin:0 10px 10px 0;
+}
+.user-stats{
+    flex-basis:37%;
+    margin:0 0px 10px 10px;
+}
+
+.categories{
+    flex-basis:49%;
+    margin:10px 10px 0px 0px;
+}
+.shop{
+    flex-basis:48%;
+    margin:10px 0px 0px 10px;
+}
+
+
+@media screen and (max-width: 740px) {
+    .today,
+    .user-stats,
+    .categories,
+    .shop{
+        flex-basis:100%;
+        margin:0px 0px 20px 0px;
+    }
+    .task-container i{
+        opacity:1;
+    }
+    
+}
 
 
 @media screen and (max-width: 530px) {

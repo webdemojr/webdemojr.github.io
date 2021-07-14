@@ -7,8 +7,9 @@
     --max-width:750px;
     --accent-color-900:#048efe;
     --accent-color-100:#e2e5ff;
-    --primary-background-color:#fff;
-    --secondary-background-color:#fff;
+    --primary-background-color:#f3f5f7;
+    --secondary-background-color:rgb(250, 250, 250);
+    --third-background-color:#fff;
     --neutral-color-200:#e9e9e9;
     --primary-text-color:#262626;
     --secondary-text-color:#fff;
@@ -22,6 +23,7 @@
     --accent-color-100:#e2e5ff;
     --primary-background-color:#18191d;
     --secondary-background-color:#1c1e22;
+    --third-background-color:#2b2e35;
     --neutral-color-200:#3b3b3b;
     --primary-text-color:rgb(228, 228, 228);
     --secondary-text-color:#262626;

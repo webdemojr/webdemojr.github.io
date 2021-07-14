@@ -168,21 +168,13 @@ $(document).ready(function(){
         OpenCategory($thisid);
     });
 
-    // $('.specific-category-input').on("input", function() {
-    //     var dInput = this.value;
-    //     var thisid = this.attr("id");
-    //     User.ChangeCategoryTitle(thisid, dInput);
-    // });
-
     $(".today-list").on("click", ".task-category", function(){
         let $thisid = $(this).attr("id");
         OpenCategory($thisid);
     });
 
     $(".go-back").click(function(){
-        $(".specific-category").addClass("display-none");
-        $(".categories").removeClass("display-none");
-        OpenCategories();
+        OpenHome();
     });
 
     $(".utility-belt-solo").click(function(){
@@ -199,18 +191,18 @@ $(document).ready(function(){
     });
 
 
-    $(".utility-belt-edge > div").click(function(){
-        $(this).addClass("user-utility-belt-active").siblings().removeClass('user-utility-belt-active');
-        if($(this).hasClass("user-categories")){
-            OpenCategories();
-        }else if($(this).hasClass("user-shop")){
+    // $(".utility-belt-edge > div").click(function(){
+    //     $(this).addClass("user-utility-belt-active").siblings().removeClass('user-utility-belt-active');
+    //     if($(this).hasClass("user-categories")){
+    //         OpenCategories();
+    //     }else if($(this).hasClass("user-shop")){
 
-        }else if($(this).hasClass("user-profile")){
+    //     }else if($(this).hasClass("user-profile")){
 
-        }else if($(this).hasClass("user-home")){
-            OpenHome();
-        }
-    });
+    //     }else if($(this).hasClass("user-home")){
+    //         OpenHome();
+    //     }
+    // });
 
     
     $(".specific-category-delete").click(function(){
@@ -270,9 +262,9 @@ $(document).ready(function(){
 
 function OpenHome(){
     BuildTodayTasks();
-    $(".categories").addClass("display-none");
-    $(".today").removeClass("display-none");
+    $(".dashboard").removeClass("display-none");
     $(".specific-category").addClass("display-none");
+    BuildCategories();
 }
 
 function OpenCategories(){
@@ -374,8 +366,7 @@ function OpenCategory($thisid){
     $(".specific-category-edit").attr("id",$thisid);
 
     $(".user-categories").addClass("user-utility-belt-active").siblings().removeClass('user-utility-belt-active');
-    $(".today").addClass("display-none");
-    $(".categories").addClass("display-none");
+    $(".dashboard").addClass("display-none");
     $(".specific-category").removeClass("display-none");
 
     BuildTasks(thiscat);
@@ -418,6 +409,7 @@ function BuildTodayTasks(){
 
     let today_tasks = user_tasks.filter(x => x.isToday == true);
 
+    $(".number-of-today-tasks").text(today_tasks.length);
     for(let i=today_tasks.length-1; i>=0;i--){
         let specificCategory = User.GetSpecificCategory(today_tasks[i].category_id);
         let colorfound = Clr.GetSpecificColor(specificCategory.color);

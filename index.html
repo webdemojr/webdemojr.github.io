@@ -10,7 +10,7 @@
     <script src="https://unpkg.com/phosphor-icons"></script>
     <title>Todo App</title>
 </head>
-<body class='dark-mode'>
+<body class=''>
 
     <div class="full-cover display-none"></div>
 
@@ -27,14 +27,41 @@
             </div>
         </div>
 
-        <div class="utility-belt-edge">
+        <!-- <div class="utility-belt-edge">
             <div class="user-home user-utility-belt-active"><i class="ph-house"></i></div>
             <div class="user-categories"><i class="ph-hash"></i></div>
             <div class="user-shop"><i class="ph-shopping-cart-simple"></i></div>
             <div class="user-profile"><i class="ph-user-circle"></i></div>
-        </div>
+        </div> -->
 
-        <div class="user-stats"></div>
+        
+
+
+        <div class="dashboard">
+            <div class="dashboard-card dashboard-card-lg today">
+                <div class="dashboard-card-title">
+                    <h2>Today's List - <span class='number-of-today-tasks'></span> Task(s)</h2>
+                </div>
+                <div class="dashboard-card-content">
+                    <div class="today-list">
+          
+                    </div>
+                </div>
+            </div><div class="dashboard-card dashboard-card-sm user-stats">
+
+            </div><div class="dashboard-card dashboard-card-md categories">
+                <div class="dashboard-card-title">
+                    <h2>My Categories</h2>
+                </div>
+                <div class="dashboard-card-content">
+                    <div class="categories-list">
+    
+                    </div>
+                </div>
+            </div><div class="dashboard-card dashboard-card-md shop">
+
+            </div>
+        </div>
 
         <div class="creator-container">
             <div class="creator creator-hide">
@@ -73,44 +100,7 @@
             </div>
         </div>
 
-        <div class="today">
-            <h2>Today's List</h2>
-            <div class="today-list">
 
-                
-                    <!-- <div class="task-container">
-                        <div class="task-inner-container task-details">
-                            <div class="task-category"><i class="ph-hash"></i></div><div class="task-title">Balls</div>
-                        </div>
-
-                        <div class="task-inner-container task-actions">
-                            <div class="task-check"><i class="ph-check"></i></div><div class="task-delete"><i class="ph-trash"></i></div>
-                        </div>
-
-                    </div>
-
-                    <div class="task-container">
-                        <div class="task-inner-container task-details">
-                            <div class="task-category"><i class="ph-hash"></i></div><div class="task-title">Balls</div>
-                        </div>
-
-                        <div class="task-inner-container task-actions">
-                            <div class="task-check"><i class="ph-check"></i></div><div class="task-cancel"><i class="ph-x"></i></div><div class="task-delete"><i class="ph-trash"></i></div>
-                        </div>
-
-                    </div>
-             -->
-          
-            </div>
-        </div>
-
-
-        <div class="categories display-none">
-            <h2>My Categories</h2>
-            <div class="categories-list">
-
-            </div>
-        </div>
 
         <div class="specific-category display-none">
             <div class="specific-category-header">
