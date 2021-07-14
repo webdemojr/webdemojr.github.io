@@ -67,7 +67,7 @@ h2{
     margin-bottom:10px;
     border-radius: 10px;
     height:fit-content;
-    overflow-y: auto !important;
+    overflow-y: scroll !important;
 }
 .ctgrs-container{
     width:100%;
@@ -309,7 +309,7 @@ h2{
     border-radius:10px 10px 0 0;
     box-sizing: border-box;
     padding:20px;
-    overflow-y: auto !important;
+    overflow-y: scroll !important;
     background:var(--primary-background-color);
     z-index: 200;
 
@@ -509,7 +509,7 @@ h2{
     z-index:900;
     background:var(--primary-background-color);
     top:0;
-    overflow-y: auto !important;
+    overflow-y: scroll !important;
 }
 
 .edit-specific-category-window-inner-container{
@@ -572,7 +572,7 @@ h2{
 }
 
 .dashboard-card-content{
-    overflow-y: auto;
+    overflow-y: scroll;
     overflow-x: hidden;
     height:300px;
 }
