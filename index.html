@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="style.css">
+    <title>Drippl</title>
+</head>
+<body>
+
+
+    <div class="player-level">
+        Your level is:
+        <br>
+      <div class="current-player-level">-</div>
+    </div>
+    
+    <div class="droply-progress">
+        <div class="progress-bar"></div>
+    </div>
+
+    <div class="game-container">
+
+        <!-- <div class="guess-the-word"></div> -->
+
+
+        <div class="rows-container">
+
+        </div>
+
+
+        <div class="keyboard">
+            <div class="keyboard-keys-row keyboard-keys-row-one">
+                <button id="key-Q" class="keyboard-key">Q</button>
+                <button id="key-W" class="keyboard-key">W</button>
+                <button id="key-E" class="keyboard-key">E</button>
+                <button id="key-R" class="keyboard-key">R</button>
+                <button id="key-T" class="keyboard-key">T</button>
+                <button id="key-Y" class="keyboard-key">Y</button>
+                <button id="key-U" class="keyboard-key">U</button>
+                <button id="key-I" class="keyboard-key">I</button>
+                <button id="key-O" class="keyboard-key">O</button>
+                <button id="key-P" class="keyboard-key">P</button>
+                <button id="key-Backspace" class="keyboard-key">←</button>
+            </div>
+            <div class="keyboard-keys-row keyboard-keys-row-two">
+                <button id="key-A" class="keyboard-key">A</button>
+                <button id="key-S" class="keyboard-key">S</button>
+                <button id="key-D" class="keyboard-key">D</button>
+                <button id="key-F" class="keyboard-key">F</button>
+                <button id="key-G" class="keyboard-key">G</button>
+                <button id="key-H" class="keyboard-key">H</button>
+                <button id="key-J" class="keyboard-key">J</button>
+                <button id="key-K" class="keyboard-key">K</button>
+                <button id="key-L" class="keyboard-key">L</button>
+            </div>
+            <div class="keyboard-keys-row keyboard-keys-row-three">
+                <button id="key-Z" class="keyboard-key">Z</button>
+                <button id="key-X" class="keyboard-key">X</button>
+                <button id="key-C" class="keyboard-key">C</button>
+                <button id="key-V" class="keyboard-key">V</button>
+                <button id="key-B" class="keyboard-key">B</button>
+                <button id="key-N" class="keyboard-key">N</button>
+                <button id="key-M" class="keyboard-key">M</button>
+                <button id="key-Enter" class="keyboard-key">ENTER</button>
+
+            </div>
+            
+
+        </div>
+
+    </div>
+
+    <div class="game-won display-none">
+        🥳 Congrats! You won today's puzzle! <br><br>Come back tomorrow to help Droply get closer to his goal!
+    </div>
+
+    <div class="game-lost display-none">
+        The word today was tough! <br><br>Come back tomorrow to help Droply get closer to his goal!
+    </div>
+
+    <div class="message hide-message"></div>
+
+    <div class="win-message wl-message display-none">You Won! You're amazing 🥳</div>
+    <div class="lose-message wl-message display-none">Oh no! Today's word is tough! It's: <br>  <span class="the-word"></span> <br> You'll get it tomorrow though for sure! ☺️ </div>
+
+
+    
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+    <script type="module" src="script.js"></script>
+    
+</body>
+</html>
