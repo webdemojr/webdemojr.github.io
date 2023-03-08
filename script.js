@@ -288,22 +288,13 @@ function continueGuess() {
   if(currentrow != word.length){
     currentrow++
   }else if(currentrow == word.length && Storage.player.level == 1 && Storage.player.winStatus == false){
-    // just finished the last row but still didn't win
-    currentrow = 0
-    $(".letter").text('')
-    $(".letter").removeClass('correct')
-    $(".letter").removeClass('closer')
-    $(".letter").removeClass('incorrect')
+    moreChances()
 
   }else if(currentrow == word.length 
     && Storage.player.level == 2 
     && Storage.player.winStatus == false
     && chanceCounter < 2){
-    currentrow = 0
-    $(".letter").text('')
-    $(".letter").removeClass('correct')
-    $(".letter").removeClass('closer')
-    $(".letter").removeClass('incorrect')
+    moreChances()
 
     chanceCounter++
   }else if(currentrow == word.length 
@@ -328,6 +319,24 @@ function continueGuess() {
 
   currentguess = []
   positiontracker = positionstart
+}
+
+function moreChances(){
+  currentrow = 1
+  var lastDiv = $('.letters-container:last')
+  lastDiv.prevAll('.letters-container').remove()
+
+  for(let i=0; i < word.length; i++){
+
+    let $row = $("<div class='letters-container' style='grid-template-columns: repeat(" + word.length + ", 1fr)'></div>");
+
+    for(let j=0; j<word.length; j++){
+        let $letter = $("<div class='letter'></div>")
+        $row.append($letter)
+    }
+    
+    $(".rows-container").append($row)
+}
 }
 
 
@@ -596,6 +605,7 @@ function newLocal(){
   Storage.AddToLocalStorage()
 
   refreshLocal()
+  console.log(filteredwords)
 }
 
 function setLocal(){
@@ -650,6 +660,7 @@ function refreshLocal(){
   }
 
 
+  filterByLevel()
   getWord()
 
   Storage.updateWinStatus(false)
